@@ -58,7 +58,7 @@ Open code/lif_neuron.ipynb in Jupyter and run all cells.
 
 ## What I learned
 
-Building this showed me how a differential equation can be turned into a simple loop that steps through time. I saw that a neuron only fires when its input is strong enough for the voltage to reach the threshold, and that the F-I curve summarises this behaviour across many inputs. Adding the refractory period showed me how a single change to the model limits the maximum firing rate.
+Building this showed me how a differential equation can be turned into a simple loop that steps through time. I saw that a neuron only generates an action potential when its input current is strong enough for the voltage to reach the threshold, and that the F-I curve summarises this behaviour across many inputs. After adding the refractory period I got to know how a factor like refractory period can decrease the frequency of a neuron to generate action potential.
 
 ## Next steps
 
@@ -67,54 +67,4 @@ Compare different time steps (dt) to see how accuracy changes
 Build a Hodgkin-Huxley model
 Simulate a network of connected neurons# Leaky-Integrate-and-fire-neuron-simulation
 
-A Python simulation of a leaky integrate-and-fire neuron. It looks at how the
-neuron responds to different input currents, when it fires an action potential
-(spike), and how a refractory period changes its firing.
 
-## What is an LIF neuron?
-
-The LIF neuron is a simplified model of how a real neuron spikes. Think of a
-leaky bucket: the input current fills the bucket (the membrane voltage rises)
-while the leak drains it back toward the resting level. When the voltage
-reaches the threshold, the neuron fires a spike and the voltage is reset.
-
-The model is described by this equation:
-
-    τ · dV/dt = −(V − V_rest) + R · I
-
-## Parameters
-
-dt = 0.1  (Time Steps)
-T = 200 (Total Simulation Time)
-tau = 10.0 (Membrane Time Constant)
-V_rest = -65.0 (voltage when the neuron is at rest).
-V_th = -50.0 (threshold potential)
-V_reset = -65.0 (The potential where neuron is set back to after firing.)
-I = Input current
-R = Membrane Resistance
-t_ref = refractory period
-
-## What I did
-- Simulated a neuron with a step input (1.5 nA for the first 50 ms, then 2.0 nA)
-- Built an F-I curve (firing rate vs. input current)
-- Added a 5 ms refractory period and compared the two cases
-
-## Results
-![Voltage trace](figures/voltage_trace.png)
-2-3 sentences: what happened at 1.5 nA, and what happened after the step to 2.0 nA?
-
-![F-I curve](figures/fi_curve.png)
-2-3 sentences: at what current does firing start? How does the curve change
-with the refractory period?
-
-## How to run
-1. Install the libraries: `pip install -r requirements.txt`
-2. Open `code/lif_neuron.ipynb` in Jupyter and run all cells.
-
-## What I learned
-2-3 sentences in your own words.
-
-## Next steps
-- Add noise to the input current
-- Hodgkin-Huxley model
-- A network of connected neurons
